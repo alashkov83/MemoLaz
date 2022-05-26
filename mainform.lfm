@@ -1,0 +1,68 @@
+object MForm: TMForm
+  Left = 0
+  Height = 45
+  Top = 0
+  Width = 190
+  BorderStyle = bsSingle
+  Caption = 'MemoLaz'
+  ClientHeight = 20
+  ClientWidth = 190
+  DefaultMonitor = dmPrimary
+  DesignTimePPI = 86
+  Menu = MainMenu1
+  LCLVersion = '2.0.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 16
+    Top = 4
+    Width = 190
+    Panels = <>
+  end
+  object MainMenu1: TMainMenu
+    left = 256
+    top = 65520
+    object FlMenu: TMenuItem
+      Caption = 'Файл'
+      object OpMenu: TMenuItem
+        Caption = 'Открыть'
+        OnClick = OpMenuClick
+      end
+      object ReloadMenuItem: TMenuItem
+        Caption = 'Перечитать'
+        OnClick = ReloadMenuClick
+      end
+      object AboutFileMenu: TMenuItem
+        Caption = 'О файле'
+        OnClick = AboutFile
+      end
+      object SortMenuItem: TMenuItem
+        Caption = 'Сортировать'
+        OnClick = SortMenuClick
+      end
+      object MenuItem5: TMenuItem
+        Caption = '-'
+      end
+      object exitMI: TMenuItem
+        Caption = 'Выход'
+        OnClick = exitMIClick
+      end
+    end
+    object ThemMenu: TMenuItem
+      Caption = 'Темы'
+    end
+    object MenuItem1: TMenuItem
+      Caption = 'Справка'
+      object MenuItem2: TMenuItem
+        Caption = 'О программе'
+        OnClick = aboutMIClick
+      end
+    end
+  end
+  object OpenFDialog: TOpenDialog
+    Title = 'Открыть файл'
+    DefaultExt = '.txt'
+    Filter = 'Shablon_*.TXT|Shablon_*.txt|TXT|*.txt|All|*.*'
+    left = 232
+    top = 65530
+  end
+end
