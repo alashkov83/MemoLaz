@@ -27,17 +27,21 @@ object MForm: TMForm
         Caption = 'Открыть'
         OnClick = OpMenuClick
       end
-      object ReloadMenuItem: TMenuItem
-        Caption = 'Перечитать'
-        OnClick = ReloadMenuClick
-      end
       object AboutFileMenu: TMenuItem
         Caption = 'О файле'
         OnClick = AboutFile
       end
+      object ReloadMenuItem: TMenuItem
+        Caption = 'Перечитать'
+        OnClick = ReloadMenuClick
+      end
       object SortMenuItem: TMenuItem
         Caption = 'Сортировать'
         OnClick = SortMenuClick
+      end
+      object UnSortMenuItem: TMenuItem
+        Caption = 'К исходному'
+        OnClick = UnSortMenuItemClick
       end
       object MenuItem5: TMenuItem
         Caption = '-'
@@ -61,7 +65,7 @@ object MForm: TMForm
   object OpenFDialog: TOpenDialog
     Title = 'Открыть файл'
     DefaultExt = '.txt'
-    Filter = 'Shablon_*.TXT|Shablon_*.txt|TXT|*.txt|All|*.*'
+    Filter = 'Shablon_*.txt|Shablon_*.txt|*.txt|*.txt|All|*.*'
     left = 232
     top = 65530
   end

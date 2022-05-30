@@ -53,6 +53,7 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     AboutFileMenu: TMenuItem;
+    UnSortMenuItem: TMenuItem;
     SortMenuItem: TMenuItem;
     ReloadMenuItem: TMenuItem;
     StatusBar1: TStatusBar;
@@ -62,6 +63,7 @@ type
     exitMI: TMenuItem;
     MenuItem5: TMenuItem;
     procedure exitMIClick(Sender: TObject);
+    procedure UnSortMenuItemClick(Sender: TObject);
     procedure OpMenuClick(Sender: TObject);
     procedure aboutMIClick(Sender: TObject);
     procedure AboutFile(Sender: TObject);
@@ -150,6 +152,11 @@ begin
   Close;
 end;
 
+procedure TMForm.UnSortMenuItemClick(Sender: TObject);
+begin
+   ConstructMenu;
+end;
+
 
 procedure TMForm.ReloadMenuClick(Sender: TObject);
 begin
@@ -227,17 +234,19 @@ end;
 procedure TMForm.AboutFile(Sender: TObject);
 var
   s_size: string;
-  path: string;
+  path, filename: string;
   fa: longint;
   s_access_time: string;
 begin
   if (ExtractFilePath(FileNameField) = '') then
   begin
     path := GetCurrentDir();
+    filename := FileNameField;
   end
   else
   begin
     path := ExtractFilePath(FileNameField);
+    filename := ExtractFileName(FileNameField);
   end;
   if FileExists(FileNameField) then
   begin
@@ -257,8 +266,9 @@ begin
     s_size := 'Файл недоступен';
     s_access_time := 'Файл недоступен';
   end;
-  ShowInfo('Путь: ' + path + sLineBreak + 'Размер: ' +
-    s_size + sLineBreak + 'Дата и время изменения: ' + s_access_time);
+  ShowInfo('Имя файла: ' + filename + sLineBreak +
+           'Путь: ' + path + sLineBreak + 'Размер: ' + s_size + ' байт' +
+           sLineBreak + 'Дата и время изменения: ' + s_access_time);
 end;
 
 
@@ -298,7 +308,7 @@ begin
     end;
     if them <> nil then
       themlist.Add(them);
-    Result := True;
+    if ThemList.Count > 0 then Result := True else Result := True;
   except
     On E: Exception do
     begin
@@ -367,9 +377,9 @@ end;
 
 procedure TMForm.aboutMIClick(Sender: TObject);
 var
-  about_s: string = 'MemoLaz v. 2.0' + sLineBreak +
+  about_s: string = 'MemoLaz v. 2.1' + sLineBreak +
   '©2021-2022 Лашков А., Набатов Б.' + sLineBreak +
-  'Для разработки использована среда Lazarus и Free Pascal Compiler version 3.0';
+  'Для разработки использована среда Lazarus и FPC v. 3.0';
 begin
   Application.MessageBox(PChar(about_s), PChar('О программе'),
     MB_OK + MB_ICONINFORMATION);
